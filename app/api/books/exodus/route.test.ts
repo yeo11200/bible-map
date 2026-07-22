@@ -19,6 +19,9 @@ describe('GET /api/books/exodus', () => {
     expect(data.chapters['12']).toEqual(expect.arrayContaining([
       expect.objectContaining({ verse: 37, text: expect.stringContaining('라암셋') }),
     ]));
+    expect(data.chapters['1']).toEqual(expect.arrayContaining([
+      expect.objectContaining({ verse: 9, text: expect.stringContaining('그가 그 백성에게 이르되') }),
+    ]));
 
     const mappedChapters = data.contextItems
       .flatMap((item: { chapterItems: { chapter: number }[] }) => item.chapterItems)

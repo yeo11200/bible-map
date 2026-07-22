@@ -8,7 +8,8 @@
     "start": "next start",
     "test": "vitest run",
     "data:export:romans": "node scripts/export-korrv-romans.mjs",
-    "data:export:exodus": "node scripts/export-korrv-exodus.mjs"
+    "data:export:exodus": "node scripts/export-korrv-exodus.mjs",
+    "data:export:gaeokgaejeong": "node scripts/export-gaeokgaejeong.mjs"
   },
   "dependencies": {
     "@vercel/analytics": "^2.0.1",

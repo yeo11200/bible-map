@@ -24,7 +24,7 @@ describe('RomansExplorer', () => {
 
     expect(screen.getAllByText('로마서 1:7, 15')).toHaveLength(2);
     expect(
-      screen.getAllByText(/로마에 있어 하나님의 사랑하심을 입고 성도로 부르심을 입은 모든 자에게/i),
+      screen.getAllByText(/로마에서 하나님의 사랑하심을 받고 성도로 부르심을 받은 모든 자에게/i),
     ).toHaveLength(2);
 
     panel.scrollTop = 240;

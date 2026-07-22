@@ -17,6 +17,6 @@ describe('ExodusReader', () => {
     fireEvent.click(screen.getByRole('button', { name: '20장' }));
 
     expect(screen.getByRole('heading', { name: '출애굽기 20장' })).toBeInTheDocument();
-    expect(screen.getByText(/너는 나 외에는 다른 신들을 네게 있게 말지니라/i)).toBeInTheDocument();
+    expect(screen.getByText(/너는 나 외에는 다른 신들을 네게 두지 말라/i)).toBeInTheDocument();
   });
 });
