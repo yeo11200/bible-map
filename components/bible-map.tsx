@@ -52,7 +52,7 @@ export function BibleMap({ items, selectedId, onSelect, mapUrl, ariaLabel, initi
           source: 'romans-context',
           filter: ['==', '$type', 'Point'],
           paint: {
-            'circle-color': ['match', ['get', 'layer'], 'RECIPIENT', '#984f2a', 'WRITING_CONTEXT', '#3e6d83', '#765e9c'],
+            'circle-color': ['match', ['get', 'layer'], 'RECIPIENT', '#984f2a', 'WRITING_CONTEXT', '#3e6d83', 'EVENT', '#984f2a', 'JOURNEY', '#3e6d83', 'UNCERTAIN', '#765e9c', '#765e9c'],
             'circle-radius': 9,
             'circle-stroke-width': 2,
             'circle-stroke-color': '#fffdf8',

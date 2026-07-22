@@ -13,7 +13,7 @@ export function ExodusContextPanel({ item }: { item: ExodusContextItem }) {
 
   return (
     <aside ref={panelRef} aria-live="polite" className="context-panel">
-      <p className="layer-label">{item.certainty === 'UNCERTAIN' ? '추정 위치 · 위치 논쟁' : '전통적 여정 맥락'}</p>
+      <p className="layer-label">출애굽 여정 {item.sequence}단계 · {item.certainty === 'UNCERTAIN' ? '추정 위치' : '전통적 여정 맥락'}</p>
       <h1>{item.title}</h1>
       <p>{item.summary}</p>
       <h2>연관 성경 구절</h2>
