@@ -16,6 +16,7 @@ export function ActsExplorer() {
   const [data, setData] = useState<{ modes: ActsMode[]; contextItems: ActsContextItem[]; chapters: Record<string, { verse: number; text: string }[]> }>();
   const [modeId, setModeId] = useState<ActsMode['id']>('whole-journey');
   const [selectedId, setSelectedId] = useState<string>();
+  const [chapter, setChapter] = useState(1);
 
   useEffect(() => { void fetch('/api/books/acts').then((response) => response.ok ? response.json() : undefined).then(setData); }, []);
 
@@ -34,7 +35,13 @@ export function ActsExplorer() {
       <h2>연관 성경 구절</h2>
       <ul>{selectedItem.scriptureReferences.map((reference) => <li key={reference}>{reference}</li>)}</ul>
       <div className="scripture-text">{selectedItem.verseReferences.map(({ chapter, verses }) => <section key={chapter}><h3>사도행전 {chapter}:{verses.join(', ')}</h3>{data.chapters[String(chapter)].filter(({ verse }) => verses.includes(verse)).map(({ verse, text }) => <p key={verse}><sup>{verse}</sup>{text}</p>)}</section>)}</div>
-      <section className="chapter-journey"><h2>이 지점에서 읽을 장</h2>{selectedItem.chapterItems.map((item) => <button key={item.chapter} type="button"><strong>{item.chapter}장 · {item.title}</strong><span>{item.summary}</span></button>)}</section>
+      <section className="chapter-journey"><h2>이 지점에서 읽을 장</h2>{selectedItem.chapterItems.map((item) => <button key={item.chapter} type="button" onClick={() => setChapter(item.chapter)}><strong>{item.chapter}장 · {item.title}</strong><span>{item.summary}</span></button>)}</section>
+      <section className="romans-reader" aria-label="사도행전 전체 본문">
+        <h2>사도행전 전체</h2>
+        <div className="chapter-picker" aria-label="사도행전 장 선택">{Object.keys(data.chapters).map(Number).map((number) => <button key={number} type="button" aria-pressed={chapter === number} onClick={() => setChapter(number)}>{number}장</button>)}</div>
+        <h3>사도행전 {chapter}장</h3>
+        <div className="chapter-text">{data.chapters[String(chapter)].map(({ verse, text }) => <p key={verse}><sup>{verse}</sup>{text}</p>)}</div>
+      </section>
     </aside>
   </main>;
 }
