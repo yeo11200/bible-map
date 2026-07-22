@@ -1,0 +1,16 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    { "type": "Feature", "properties": { "id": "rome-recipient", "layer": "RECIPIENT" }, "geometry": { "type": "Point", "coordinates": [12.4964, 41.9028] } },
+    { "type": "Feature", "properties": { "id": "corinth-writing-context", "layer": "WRITING_CONTEXT" }, "geometry": { "type": "Point", "coordinates": [22.9327, 37.9386] } },
+    { "type": "Feature", "properties": { "id": "rome-journey", "layer": "RELATED_HISTORICAL_EVENT" }, "geometry": { "type": "LineString", "coordinates": [[22.9327, 37.9386], [19.8187, 41.3275], [12.4964, 41.9028]] } },
+    { "type": "Feature", "properties": { "id": "jerusalem-service", "layer": "RELATED_HISTORICAL_EVENT" }, "geometry": { "type": "Point", "coordinates": [35.2137, 31.7683] } },
+    { "type": "Feature", "properties": { "id": "illyricum-mission", "layer": "RELATED_HISTORICAL_EVENT" }, "geometry": { "type": "Point", "coordinates": [19.8187, 41.3275] } },
+    { "type": "Feature", "properties": { "id": "macedonia-offering", "layer": "RELATED_HISTORICAL_EVENT" }, "geometry": { "type": "Point", "coordinates": [22.9444, 40.6401] } },
+    { "type": "Feature", "properties": { "id": "achaia-offering", "layer": "RELATED_HISTORICAL_EVENT" }, "geometry": { "type": "Point", "coordinates": [22.9327, 37.9386] } },
+    { "type": "Feature", "properties": { "id": "spain-plan", "layer": "RELATED_HISTORICAL_EVENT" }, "geometry": { "type": "Point", "coordinates": [1.2560, 41.1189] } },
+    { "type": "Feature", "properties": { "id": "judea-prayer", "layer": "RELATED_HISTORICAL_EVENT" }, "geometry": { "type": "Point", "coordinates": [35.1079, 31.5326] } },
+    { "type": "Feature", "properties": { "id": "asia-ebpaenetus", "layer": "RELATED_HISTORICAL_EVENT" }, "geometry": { "type": "Point", "coordinates": [27.1428, 37.9390] } },
+    { "type": "Feature", "properties": { "id": "zion-promise", "layer": "RELATED_HISTORICAL_EVENT" }, "geometry": { "type": "Point", "coordinates": [35.2320, 31.7780] } }
+  ]
+}
