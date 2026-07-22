@@ -9,5 +9,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${siteUrl}/`, changeFrequency: 'weekly', priority: 1 },
     { url: `${siteUrl}/books/romans`, changeFrequency: 'monthly', priority: 0.8 },
     { url: `${siteUrl}/books/exodus`, changeFrequency: 'monthly', priority: 0.8 },
+    { url: `${siteUrl}/books/acts`, changeFrequency: 'monthly', priority: 0.8 },
   ];
 }

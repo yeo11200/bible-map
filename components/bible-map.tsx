@@ -17,9 +17,10 @@ type BibleMapProps = {
   mapUrl: string;
   ariaLabel: string;
   initialView?: { center: [number, number]; zoom: number };
+  legend?: { label: string; color: string }[];
 };
 
-export function BibleMap({ items, selectedId, onSelect, mapUrl, ariaLabel, initialView = DEFAULT_INITIAL_VIEW }: BibleMapProps) {
+export function BibleMap({ items, selectedId, onSelect, mapUrl, ariaLabel, initialView = DEFAULT_INITIAL_VIEW, legend }: BibleMapProps) {
   const mapContainerRef = useRef<HTMLDivElement>(null);
   const key = process.env.NEXT_PUBLIC_MAPTILER_KEY;
 
@@ -52,8 +53,8 @@ export function BibleMap({ items, selectedId, onSelect, mapUrl, ariaLabel, initi
           source: 'romans-context',
           filter: ['==', '$type', 'Point'],
           paint: {
-            'circle-color': ['match', ['get', 'layer'], 'RECIPIENT', '#984f2a', 'WRITING_CONTEXT', '#3e6d83', 'EVENT', '#984f2a', 'JOURNEY', '#3e6d83', 'UNCERTAIN', '#765e9c', '#765e9c'],
-            'circle-radius': 9,
+            'circle-color': ['match', ['get', 'layer'], 'RECIPIENT', '#984f2a', 'WRITING_CONTEXT', '#3e6d83', 'EVENT', '#984f2a', 'JOURNEY', '#3e6d83', 'UNCERTAIN', '#765e9c', 'CHURCH', '#984f2a', 'MISSION', '#3e6d83', 'ROME', '#765e9c', '#765e9c'],
+            'circle-radius': ['match', ['get', 'id'], selectedId, 13, 9],
             'circle-stroke-width': 2,
             'circle-stroke-color': '#fffdf8',
           },
@@ -70,11 +71,12 @@ export function BibleMap({ items, selectedId, onSelect, mapUrl, ariaLabel, initi
     });
 
     return () => removeMap?.();
-  }, [ariaLabel, initialView, key, mapUrl, onSelect]);
+  }, [ariaLabel, initialView, key, mapUrl, onSelect, selectedId]);
 
   return (
     <section className="map-stage" aria-label={ariaLabel}>
       <div ref={mapContainerRef} className="map-canvas" />
+      {legend && <div className="map-legend" aria-label="지도 색상 범례">{legend.map((item) => <span key={item.label}><i style={{ backgroundColor: item.color }} />{item.label}</span>)}</div>}
       {!key && <div className="map-fallback">
         <p>지도 키를 연결하면 MapTiler 지도가 이곳에 표시됩니다.</p>
         <div className="place-list" aria-label="지도 하이라이트">
@@ -86,7 +88,7 @@ export function BibleMap({ items, selectedId, onSelect, mapUrl, ariaLabel, initi
               aria-pressed={item.id === selectedId}
               onClick={() => onSelect(item.id)}
             >
-              {item.title}
+              {item.title}{item.id === selectedId ? ' · ✓ 선택됨' : ''}
             </button>
           ))}
         </div>

@@ -34,6 +34,13 @@ button, a { font: inherit; }
 .chapter-journey { margin-top: 28px; padding-top: 24px; border-top: 2px solid #dfd4c2; }
 .chapter-journey button { display: block; width: 100%; margin-top: 8px; padding: 10px 12px; border: 1px solid #d1c4b2; border-radius: 8px; background: #fff; color: #302a22; text-align: left; cursor: pointer; }
 .chapter-journey button[aria-pressed="true"] { border-color: #6f3d1f; background: #f3e4ca; color: #5c321a; font-weight: 700; }
+.chapter-journey button span { display: block; margin-top: 4px; color: #62584d; font-size: .9rem; }
+.mode-tabs { display: flex; gap: 8px; margin-bottom: 20px; }
+.mode-tabs button { padding: 9px 12px; border: 1px solid #d1c4b2; border-radius: 8px; background: #fff; cursor: pointer; }
+.mode-tabs button[aria-pressed="true"] { border-color: #6f3d1f; background: #6f3d1f; color: #fff; font-weight: 700; }
+.map-legend { position: absolute; z-index: 1; top: 16px; left: 16px; display: grid; gap: 6px; padding: 10px 12px; border: 1px solid #dfd4c2; border-radius: 10px; background: rgba(255, 253, 248, .94); font-size: .82rem; }
+.map-legend span { display: flex; align-items: center; gap: 7px; }
+.map-legend i { width: 10px; height: 10px; border-radius: 50%; }
 .chapter-picker { display: flex; flex-wrap: wrap; gap: 6px; }
 .chapter-picker button { min-width: 40px; padding: 7px 8px; border: 1px solid #d1c4b2; border-radius: 8px; background: #fff; cursor: pointer; }
 .chapter-picker button[aria-pressed="true"] { border-color: #6f3d1f; background: #f3e4ca; color: #5c321a; font-weight: 700; }

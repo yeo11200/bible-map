@@ -10,5 +10,6 @@ describe('GET /llms.txt', () => {
     expect(response.headers.get('content-type')).toContain('text/plain');
     expect(content).toContain('# 성경 지도 탐험');
     expect(content).toContain('http://localhost:3001/books/romans');
+    expect(content).toContain('http://localhost:3001/books/acts');
   });
 });

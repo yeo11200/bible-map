@@ -14,6 +14,7 @@ if (!hwp5txtPath || !bibleSourcePath) {
 const books = [
   { key: '출', book: '출애굽기', source: '구약/1-02출애굽기.hwp', output: 'data/korrv-exodus.json', chapters: 40 },
   { key: '롬', book: '로마서', source: '신약/2-06로마서.hwp', output: 'data/korrv-romans.json', chapters: 16 },
+  { key: '행', book: '사도행전', source: '신약/2-05사도행전.hwp', output: 'data/gaeokgaejeong-acts.json', chapters: 28 },
 ];
 
 for (const { key, book, source, output, chapters: chapterCount } of books) {
