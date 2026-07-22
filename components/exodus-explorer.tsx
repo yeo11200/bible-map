@@ -6,7 +6,7 @@ import type { ExodusContextItem } from '../data/exodus-context';
 import { BibleMap } from './bible-map';
 import { ExodusContextPanel } from './exodus-context-panel';
 
-const EXODUS_INITIAL_VIEW = { center: [33, 29.7] as [number, number], zoom: 5.5 };
+const EXODUS_INITIAL_VIEW = { center: [32.7, 29.7] as [number, number], zoom: 4.5 };
 
 export function ExodusExplorer() {
   const [items, setItems] = useState<ExodusContextItem[]>();

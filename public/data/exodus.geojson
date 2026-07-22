@@ -1,16 +1,18 @@
 {
   "type": "FeatureCollection",
   "features": [
+    { "type": "Feature", "properties": { "id": "egypt-oppression", "layer": "EVENT" }, "geometry": { "type": "Point", "coordinates": [31.15, 30.55] } },
+    { "type": "Feature", "properties": { "id": "horeb-calling", "layer": "UNCERTAIN" }, "geometry": { "type": "Point", "coordinates": [34.0, 28.62] } },
+    { "type": "Feature", "properties": { "id": "egypt-plagues", "layer": "EVENT" }, "geometry": { "type": "Point", "coordinates": [31.48, 30.62] } },
     { "type": "Feature", "properties": { "id": "rameses-departure", "layer": "EVENT" }, "geometry": { "type": "Point", "coordinates": [31.9, 30.9] } },
-    { "type": "Feature", "properties": { "id": "succoth-camp", "layer": "JOURNEY" }, "geometry": { "type": "Point", "coordinates": [32.3, 30.6] } },
     { "type": "Feature", "properties": { "id": "etham-camp", "layer": "JOURNEY" }, "geometry": { "type": "Point", "coordinates": [32.7, 30.15] } },
-    { "type": "Feature", "properties": { "id": "sea-encampment", "layer": "UNCERTAIN" }, "geometry": { "type": "Point", "coordinates": [32.9, 29.85] } },
     { "type": "Feature", "properties": { "id": "reed-sea-crossing", "layer": "UNCERTAIN" }, "geometry": { "type": "Point", "coordinates": [33.05, 29.62] } },
     { "type": "Feature", "properties": { "id": "marah-water", "layer": "UNCERTAIN" }, "geometry": { "type": "Point", "coordinates": [33.65, 28.68] } },
-    { "type": "Feature", "properties": { "id": "elim-rest", "layer": "UNCERTAIN" }, "geometry": { "type": "Point", "coordinates": [33.78, 28.48] } },
     { "type": "Feature", "properties": { "id": "sin-wilderness", "layer": "UNCERTAIN" }, "geometry": { "type": "Point", "coordinates": [34.15, 28.56] } },
     { "type": "Feature", "properties": { "id": "rephidim-water", "layer": "UNCERTAIN" }, "geometry": { "type": "Point", "coordinates": [34.05, 28.7] } },
+    { "type": "Feature", "properties": { "id": "midian-advice", "layer": "UNCERTAIN" }, "geometry": { "type": "Point", "coordinates": [34.12, 28.74] } },
     { "type": "Feature", "properties": { "id": "sinai-covenant", "layer": "UNCERTAIN" }, "geometry": { "type": "Point", "coordinates": [33.97, 28.54] } },
-    { "type": "Feature", "properties": { "id": "exodus-route", "layer": "JOURNEY" }, "geometry": { "type": "LineString", "coordinates": [[31.9, 30.9], [32.3, 30.6], [32.7, 30.15], [32.9, 29.85], [33.05, 29.62], [33.65, 28.68], [33.78, 28.48], [34.15, 28.56], [34.05, 28.7], [33.97, 28.54]] } }
+    { "type": "Feature", "properties": { "id": "sinai-tabernacle", "layer": "UNCERTAIN" }, "geometry": { "type": "Point", "coordinates": [33.9, 28.48] } },
+    { "type": "Feature", "properties": { "id": "exodus-route", "layer": "JOURNEY" }, "geometry": { "type": "LineString", "coordinates": [[31.15, 30.55], [34.0, 28.62], [31.48, 30.62], [31.9, 30.9], [32.7, 30.15], [33.05, 29.62], [33.65, 28.68], [34.15, 28.56], [34.05, 28.7], [34.12, 28.74], [33.97, 28.54], [33.9, 28.48]] } }
   ]
 }

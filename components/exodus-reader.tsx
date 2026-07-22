@@ -1,28 +1,28 @@
 'use client';
 
-import { useRef, useState } from 'react';
+import { useEffect, useRef } from 'react';
 
 type ExodusReaderProps = {
   chapters: Record<string, { verse: number; text: string }[]>;
+  chapter: number;
+  onChapterChange: (chapter: number) => void;
 };
 
-export function ExodusReader({ chapters }: ExodusReaderProps) {
-  const [chapter, setChapter] = useState(1);
+export function ExodusReader({ chapters, chapter, onChapterChange }: ExodusReaderProps) {
   const chapterTextRef = useRef<HTMLDivElement>(null);
   const chapterNumbers = Object.keys(chapters).map(Number);
   const verses = chapters[String(chapter)];
 
-  const handleChapterChange = (nextChapter: number) => {
+  useEffect(() => {
     if (chapterTextRef.current) chapterTextRef.current.scrollTop = 0;
-    setChapter(nextChapter);
-  };
+  }, [chapter]);
 
   return (
     <section className="romans-reader" aria-label="출애굽기 전체 본문">
       <h2>출애굽기 전체</h2>
       <div className="chapter-picker" aria-label="출애굽기 장 선택">
         {chapterNumbers.map((number) => (
-          <button key={number} type="button" aria-pressed={chapter === number} onClick={() => handleChapterChange(number)}>
+          <button key={number} type="button" aria-pressed={chapter === number} onClick={() => onChapterChange(number)}>
             {number}장
           </button>
         ))}
