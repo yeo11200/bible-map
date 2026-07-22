@@ -16,5 +16,8 @@ describe('GET /api/books/exodus', () => {
       expect.objectContaining({ id: 'marah-water', sequence: 6, certainty: 'UNCERTAIN' }),
       expect.objectContaining({ id: 'sinai-covenant', certainty: 'UNCERTAIN' }),
     ]));
+    expect(data.chapters['12']).toEqual(expect.arrayContaining([
+      expect.objectContaining({ verse: 37, text: expect.stringContaining('라암셋') }),
+    ]));
   });
 });

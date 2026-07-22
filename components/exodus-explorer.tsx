@@ -10,6 +10,7 @@ const EXODUS_INITIAL_VIEW = { center: [33, 29.7] as [number, number], zoom: 5.5 
 
 export function ExodusExplorer() {
   const [items, setItems] = useState<ExodusContextItem[]>();
+  const [chapters, setChapters] = useState<Record<string, { verse: number; text: string }[]>>();
   const [selectedId, setSelectedId] = useState<string>();
 
   useEffect(() => {
@@ -17,14 +18,18 @@ export function ExodusExplorer() {
       const response = await fetch('/api/books/exodus');
       if (!response.ok) return;
 
-      const data = (await response.json()) as { contextItems: ExodusContextItem[] };
+      const data = (await response.json()) as {
+        contextItems: ExodusContextItem[];
+        chapters: Record<string, { verse: number; text: string }[]>;
+      };
       setItems(data.contextItems);
+      setChapters(data.chapters);
     };
 
     void handleLoadExodusData();
   }, []);
 
-  if (!items || items.length === 0) return <main className="explorer" aria-busy="true">출애굽 여정을 준비하고 있습니다.</main>;
+  if (!items || !chapters || items.length === 0) return <main className="explorer" aria-busy="true">출애굽 여정을 준비하고 있습니다.</main>;
 
   const selectedItem = items.find((item) => item.id === selectedId) ?? items[0];
 
@@ -38,7 +43,7 @@ export function ExodusExplorer() {
         ariaLabel="출애굽 여정 지도"
         initialView={EXODUS_INITIAL_VIEW}
       />
-      <ExodusContextPanel item={selectedItem} />
+      <ExodusContextPanel item={selectedItem} chapters={chapters} />
     </main>
   );
 }
