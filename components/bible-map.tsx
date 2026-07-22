@@ -1,15 +1,25 @@
 'use client';
 
 import { useEffect, useRef } from 'react';
-import type { ContextItem } from '../data/romans-context';
 
-type BibleMapProps = {
-  items: ContextItem[];
-  selectedId: string;
-  onSelect: (id: string) => void;
+const DEFAULT_INITIAL_VIEW = { center: [17.5, 40] as [number, number], zoom: 4.5 };
+
+type MapItem = {
+  id: string;
+  title: string;
+  layer: string;
 };
 
-export function BibleMap({ items, selectedId, onSelect }: BibleMapProps) {
+type BibleMapProps = {
+  items: MapItem[];
+  selectedId: string;
+  onSelect: (id: string) => void;
+  mapUrl: string;
+  ariaLabel: string;
+  initialView?: { center: [number, number]; zoom: number };
+};
+
+export function BibleMap({ items, selectedId, onSelect, mapUrl, ariaLabel, initialView = DEFAULT_INITIAL_VIEW }: BibleMapProps) {
   const mapContainerRef = useRef<HTMLDivElement>(null);
   const key = process.env.NEXT_PUBLIC_MAPTILER_KEY;
 
@@ -22,13 +32,13 @@ export function BibleMap({ items, selectedId, onSelect }: BibleMapProps) {
       const map = new maplibregl.Map({
         container: mapContainerRef.current,
         style: `https://api.maptiler.com/maps/streets-v2/style.json?key=${key}`,
-        center: [17.5, 40],
-        zoom: 4.5,
+        center: initialView.center,
+        zoom: initialView.zoom,
       });
 
       map.on('load', () => {
-        void fetch('/api/books/romans/map').then((response) => response.json()).then((romansGeoJson) => {
-          map.addSource('romans-context', { type: 'geojson', data: romansGeoJson });
+        void fetch(mapUrl).then((response) => response.json()).then((mapGeoJson) => {
+          map.addSource('romans-context', { type: 'geojson', data: mapGeoJson });
           map.addLayer({
           id: 'romans-journey',
           type: 'line',
@@ -60,10 +70,10 @@ export function BibleMap({ items, selectedId, onSelect }: BibleMapProps) {
     });
 
     return () => removeMap?.();
-  }, [key, onSelect]);
+  }, [ariaLabel, initialView, key, mapUrl, onSelect]);
 
   return (
-    <section className="map-stage" aria-label="로마서 맥락 지도">
+    <section className="map-stage" aria-label={ariaLabel}>
       <div ref={mapContainerRef} className="map-canvas" />
       {!key && <div className="map-fallback">
         <p>지도 키를 연결하면 MapTiler 지도가 이곳에 표시됩니다.</p>

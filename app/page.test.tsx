@@ -11,6 +11,10 @@ describe('HomePage', () => {
       'href',
       '/books/romans',
     );
+    expect(screen.getByRole('link', { name: '출애굽 여정 탐험 시작' })).toHaveAttribute(
+      'href',
+      '/books/exodus',
+    );
     expect(screen.queryByRole('heading', { name: '처음 오셨나요?' })).not.toBeInTheDocument();
   });
 });

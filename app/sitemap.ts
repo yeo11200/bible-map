@@ -8,5 +8,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
   return [
     { url: `${siteUrl}/`, changeFrequency: 'weekly', priority: 1 },
     { url: `${siteUrl}/books/romans`, changeFrequency: 'monthly', priority: 0.8 },
+    { url: `${siteUrl}/books/exodus`, changeFrequency: 'monthly', priority: 0.8 },
   ];
 }

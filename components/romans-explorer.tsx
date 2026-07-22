@@ -43,7 +43,13 @@ export function RomansExplorer() {
 
   return (
     <main className="explorer">
-      <BibleMap items={data.contextItems} selectedId={selectedItem.id} onSelect={setSelectedId} />
+      <BibleMap
+        items={data.contextItems}
+        selectedId={selectedItem.id}
+        onSelect={setSelectedId}
+        mapUrl="/api/books/romans/map"
+        ariaLabel="로마서 맥락 지도"
+      />
       <ContextPanel item={selectedItem} chapters={data.chapters} />
     </main>
   );

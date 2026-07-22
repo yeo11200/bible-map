@@ -21,12 +21,11 @@ export default function HomePage() {
         <p>장소를 따라가며 사건의 맥락을 살펴보고, 연결된 본문을 함께 읽어보세요.</p>
       </section>
       <section aria-labelledby="books-heading">
-        <h2 id="books-heading">로마서로 시작하기</h2>
-        <BookCard
-          title="로마서"
-          description="수신지, 기록 배경, 바울의 로마행을 지도에서 연결해 봅니다."
-          href="/books/romans"
-        />
+        <h2 id="books-heading">탐험할 성경</h2>
+        <div className="book-list">
+          <BookCard title="로마서" description="수신지, 기록 배경, 바울의 로마행을 지도에서 연결해 봅니다." href="/books/romans" />
+          <BookCard title="출애굽 여정" description="이집트에서 시내산까지, 사건과 이동 경로를 함께 살펴봅니다." href="/books/exodus" />
+        </div>
       </section>
       <section className="about-service" aria-labelledby="about-heading">
         <h2 id="about-heading">성경 지도 탐험이란?</h2>
