@@ -8,6 +8,9 @@ button, a { font: inherit; }
 .eyebrow { color: #8b4c22; font-weight: 700; letter-spacing: .08em; font-size: .78rem; text-transform: uppercase; }
 .book-card { max-width: 440px; padding: 28px; border: 1px solid #dfd4c2; border-radius: 18px; background: #fffdf8; box-shadow: 0 12px 28px rgba(77, 51, 25, .08); }
 .book-card h2 { margin: 8px 0; font-size: 2rem; }
+.about-service { max-width: 680px; margin-top: 64px; padding-top: 32px; border-top: 1px solid #dfd4c2; }
+.about-service h2 { margin: 0 0 12px; }
+.about-service p { line-height: 1.7; }
 .button { display: inline-block; margin-top: 12px; padding: 11px 16px; border-radius: 10px; background: #6f3d1f; color: white; text-decoration: none; }
 .explorer { min-height: 100dvh; display: grid; grid-template-columns: minmax(0, 1fr) 360px; background: #f8f4ec; }
 .map-stage { min-height: 56dvh; padding: 24px; background: linear-gradient(135deg, #d9e4d2, #b8d0c1); }
