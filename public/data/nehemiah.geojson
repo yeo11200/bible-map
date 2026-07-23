@@ -1,0 +1,12 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    { "type": "Feature", "properties": { "id": "susa-route", "layer": "CALLING" }, "geometry": { "type": "LineString", "coordinates": [[48.25, 32.19], [35.23, 31.78]] } },
+    { "type": "Feature", "properties": { "id": "susa-calling", "layer": "CALLING" }, "geometry": { "type": "Point", "coordinates": [48.25, 32.19] } },
+    { "type": "Feature", "properties": { "id": "jerusalem-inspection", "layer": "CALLING" }, "geometry": { "type": "Point", "coordinates": [35.226, 31.777] } },
+    { "type": "Feature", "properties": { "id": "jerusalem-walls", "layer": "REBUILDING" }, "geometry": { "type": "Point", "coordinates": [35.236, 31.785] } },
+    { "type": "Feature", "properties": { "id": "valley-gate-opposition", "layer": "REBUILDING" }, "geometry": { "type": "Point", "coordinates": [35.219, 31.775] } },
+    { "type": "Feature", "properties": { "id": "water-gate-covenant", "layer": "RESTORATION" }, "geometry": { "type": "Point", "coordinates": [35.239, 31.779] } },
+    { "type": "Feature", "properties": { "id": "jerusalem-dedication", "layer": "RESTORATION" }, "geometry": { "type": "Point", "coordinates": [35.231, 31.782] } }
+  ]
+}

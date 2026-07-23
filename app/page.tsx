@@ -25,6 +25,7 @@ export default function HomePage() {
         <div className="book-list">
           <BookCard title="출애굽 여정" description="이집트에서 시내산까지, 사건과 이동 경로를 함께 살펴봅니다." href="/books/exodus" />
           <BookCard title="여호수아" description="요단 도하부터 가나안 정복, 지파별 땅 분배와 세겜 언약까지 지도에서 읽습니다." href="/books/joshua" />
+          <BookCard title="느헤미야" description="수산 궁의 기도부터 예루살렘 성벽 재건과 공동체 회복까지 따라갑니다." href="/books/nehemiah" />
           <BookCard title="사도행전" description="교회의 탄생부터 바울의 선교 여행과 로마 도착까지 따라갑니다." href="/books/acts" />
           <BookCard title="로마서" description="수신지, 기록 배경, 바울의 로마행을 지도에서 연결해 봅니다." href="/books/romans" />
         </div>

@@ -14,6 +14,7 @@ if (!hwp5txtPath || !bibleSourcePath) {
 const books = [
   { key: '출', book: '출애굽기', source: '구약/1-02출애굽기.hwp', output: 'data/korrv-exodus.json', chapters: 40 },
   { key: '수', book: '여호수아', source: '구약/1-06여호수아.hwp', output: 'data/gaeokgaejeong-joshua.json', chapters: 24 },
+  { key: '느', book: '느헤미야', source: '구약/1-16느헤미야.hwp', output: 'data/gaeokgaejeong-nehemiah.json', chapters: 13 },
   { key: '롬', book: '로마서', source: '신약/2-06로마서.hwp', output: 'data/korrv-romans.json', chapters: 16 },
   { key: '행', book: '사도행전', source: '신약/2-05사도행전.hwp', output: 'data/gaeokgaejeong-acts.json', chapters: 28 },
 ];
