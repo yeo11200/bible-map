@@ -2,6 +2,8 @@
 
 import { useEffect, useRef } from 'react';
 
+import { getMapLayerColor, getMapPlaceLabel } from '../lib/map-style';
+
 const DEFAULT_INITIAL_VIEW = { center: [17.5, 40] as [number, number], zoom: 4.5 };
 
 type MapItem = {
@@ -39,7 +41,18 @@ export function BibleMap({ items, selectedId, onSelect, mapUrl, ariaLabel, initi
 
       map.on('load', () => {
         void fetch(mapUrl).then((response) => response.json()).then((mapGeoJson) => {
-          map.addSource('romans-context', { type: 'geojson', data: mapGeoJson });
+          const placeLabels = Object.fromEntries(items.map((item) => [item.id, getMapPlaceLabel(item.title)]));
+          const mapDataWithPlaceLabels = {
+            ...mapGeoJson,
+            features: mapGeoJson.features.map((feature: { geometry: { type: string }; properties?: { id?: string } }) => ({
+              ...feature,
+              properties: {
+                ...feature.properties,
+                title: feature.geometry.type === 'Point' && feature.properties?.id ? placeLabels[feature.properties.id] : undefined,
+              },
+            })),
+          };
+          map.addSource('romans-context', { type: 'geojson', data: mapDataWithPlaceLabels });
           map.addLayer({
           id: 'romans-journey',
           type: 'line',
@@ -53,11 +66,27 @@ export function BibleMap({ items, selectedId, onSelect, mapUrl, ariaLabel, initi
           source: 'romans-context',
           filter: ['==', '$type', 'Point'],
           paint: {
-            'circle-color': ['match', ['get', 'layer'], 'RECIPIENT', '#984f2a', 'WRITING_CONTEXT', '#3e6d83', 'EVENT', '#984f2a', 'JOURNEY', '#3e6d83', 'UNCERTAIN', '#765e9c', 'CHURCH', '#984f2a', 'MISSION', '#3e6d83', 'ROME', '#765e9c', '#765e9c'],
-            'circle-radius': ['match', ['get', 'id'], selectedId, 13, 9],
-            'circle-stroke-width': 2,
+            'circle-color': ['match', ['get', 'layer'], 'RECIPIENT', getMapLayerColor('RECIPIENT'), 'WRITING_CONTEXT', getMapLayerColor('WRITING_CONTEXT'), 'EVENT', getMapLayerColor('EVENT'), 'JOURNEY', getMapLayerColor('JOURNEY'), 'UNCERTAIN', getMapLayerColor('UNCERTAIN'), 'CHURCH', getMapLayerColor('CHURCH'), 'MISSION', getMapLayerColor('MISSION'), 'ROME', getMapLayerColor('ROME'), 'CROSSING', getMapLayerColor('CROSSING'), 'CONQUEST', getMapLayerColor('CONQUEST'), 'INHERITANCE', getMapLayerColor('INHERITANCE'), '#765e9c'],
+            'circle-radius': ['match', ['get', 'id'], selectedId, 16, 11],
+            'circle-stroke-width': 3,
             'circle-stroke-color': '#fffdf8',
           },
+        });
+          map.addLayer({
+          id: 'romans-place-labels',
+          type: 'symbol',
+          source: 'romans-context',
+          filter: ['all', ['==', '$type', 'Point'], ['has', 'title']],
+          layout: {
+            'text-field': ['get', 'title'],
+            'text-font': ['Noto Sans Regular'],
+            'text-size': 13,
+            'text-offset': [0, 1.5],
+            'text-anchor': 'top',
+            'text-allow-overlap': true,
+            'text-ignore-placement': true,
+          },
+          paint: { 'text-color': '#302a22', 'text-halo-color': '#fffdf8', 'text-halo-width': 2 },
         });
           map.on('click', 'romans-places', (event) => {
           const id = event.features?.[0]?.properties?.id;

@@ -1,9 +1,11 @@
-import { render, screen } from '@testing-library/react';
-import { describe, expect, it } from 'vitest';
+import { cleanup, render, screen } from '@testing-library/react';
+import { afterEach, describe, expect, it } from 'vitest';
 
 import HomePage from './page';
 
 describe('HomePage', () => {
+  afterEach(cleanup);
+
   it('offers one Romans explorer entry without the duplicated beginner guide', () => {
     render(<HomePage />);
 
@@ -16,5 +18,18 @@ describe('HomePage', () => {
       '/books/exodus',
     );
     expect(screen.queryByRole('heading', { name: '처음 오셨나요?' })).not.toBeInTheDocument();
+  });
+
+  it('lists the explorers in biblical book order', () => {
+    render(<HomePage />);
+
+    expect(screen.getAllByRole('heading', { level: 2 }).map((heading) => heading.textContent)).toEqual([
+      '탐험할 성경',
+      '출애굽 여정',
+      '여호수아',
+      '사도행전',
+      '로마서',
+      '성경 지도 탐험이란?',
+    ]);
   });
 });

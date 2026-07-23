@@ -8,9 +8,10 @@ describe('sitemap', () => {
 
     expect(entries.map((entry) => entry.url)).toEqual([
       'http://localhost:3001/',
-      'http://localhost:3001/books/romans',
       'http://localhost:3001/books/exodus',
+      'http://localhost:3001/books/joshua',
       'http://localhost:3001/books/acts',
+      'http://localhost:3001/books/romans',
     ]);
   });
 });

@@ -1,0 +1,15 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    { "type": "Feature", "properties": { "id": "whole-journey", "layer": "CROSSING" }, "geometry": { "type": "LineString", "coordinates": [[35.55, 31.85], [35.43, 31.95], [35.29, 32.12], [35.23, 32.20], [35.28, 32.37], [35.19, 32.41], [35.20, 32.72], [35.54, 32.12], [35.48, 32.21]] } },
+    { "type": "Feature", "properties": { "id": "jordan-crossing", "title": "요단강 도하", "layer": "CROSSING" }, "geometry": { "type": "Point", "coordinates": [35.55, 31.85] } },
+    { "type": "Feature", "properties": { "id": "jericho-conquest", "title": "여리고", "layer": "CONQUEST" }, "geometry": { "type": "Point", "coordinates": [35.43, 31.87] } },
+    { "type": "Feature", "properties": { "id": "gibeon-treaty", "title": "기브온", "layer": "CONQUEST" }, "geometry": { "type": "Point", "coordinates": [35.16, 31.85] } },
+    { "type": "Feature", "properties": { "id": "hazor-conquest", "title": "하솔", "layer": "CONQUEST" }, "geometry": { "type": "Point", "coordinates": [35.58, 33.02] } },
+    { "type": "Feature", "properties": { "id": "gilgal-allotment", "title": "길갈", "layer": "INHERITANCE" }, "geometry": { "type": "Point", "coordinates": [35.47, 31.90] } },
+    { "type": "Feature", "properties": { "id": "shiloh-allotment", "title": "실로", "layer": "INHERITANCE" }, "geometry": { "type": "Point", "coordinates": [35.28, 32.05] } },
+    { "type": "Feature", "properties": { "id": "kedesh-refuge", "title": "게데스", "layer": "INHERITANCE" }, "geometry": { "type": "Point", "coordinates": [35.54, 33.10] } },
+    { "type": "Feature", "properties": { "id": "jordan-altar", "title": "증거의 제단", "layer": "INHERITANCE" }, "geometry": { "type": "Point", "coordinates": [35.68, 32.28] } },
+    { "type": "Feature", "properties": { "id": "shechem-covenant", "title": "세겜", "layer": "INHERITANCE" }, "geometry": { "type": "Point", "coordinates": [35.28, 32.21] } }
+  ]
+}
