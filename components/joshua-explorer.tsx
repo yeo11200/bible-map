@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react';
 
 import type { JoshuaContextItem, JoshuaMode } from '../data/joshua-context';
 import { BibleMap } from './bible-map';
+import { MobileContextPanel } from './mobile-context-panel';
 
 const JOSHUA_INITIAL_VIEW = { center: [35.2, 32.1] as [number, number], zoom: 7 };
 const legend = [
@@ -50,7 +51,7 @@ export function JoshuaExplorer() {
         initialView={JOSHUA_INITIAL_VIEW}
         legend={legend}
       />
-      <aside className="context-panel" aria-live="polite">
+      <MobileContextPanel title={selectedItem.title}>
         <div className="mode-tabs" aria-label="여호수아 탐험 모드">
           {data.modes.map((mode) => (
             <button key={mode.id} type="button" aria-pressed={mode.id === modeId} onClick={() => { setModeId(mode.id); setSelectedId(undefined); }}>
@@ -87,7 +88,7 @@ export function JoshuaExplorer() {
           <h3>여호수아 {chapter}장</h3>
           <div className="chapter-text">{data.chapters[String(chapter)].map(({ verse, text }) => <p key={verse}><sup>{verse}</sup>{text}</p>)}</div>
         </section>
-      </aside>
+      </MobileContextPanel>
     </main>
   );
 }

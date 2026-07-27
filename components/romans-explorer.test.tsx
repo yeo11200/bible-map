@@ -18,7 +18,7 @@ describe('RomansExplorer', () => {
 
     const { container } = render(<RomansExplorer />);
     const romeButton = await screen.findByRole('button', { name: /로마 — 로마서의 수신지/i });
-    const panel = container.querySelector('.context-panel') as HTMLElement;
+    const panel = container.querySelector('.mobile-panel-content') as HTMLElement;
 
     fireEvent.click(romeButton);
 

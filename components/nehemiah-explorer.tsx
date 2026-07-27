@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react';
 
 import type { NehemiahContextItem, NehemiahMode } from '../data/nehemiah-context';
 import { BibleMap } from './bible-map';
+import { MobileContextPanel } from './mobile-context-panel';
 
 const NEHEMIAH_JOURNEY_VIEW = { center: [41.7, 32] as [number, number], zoom: 5 };
 const NEHEMIAH_WALL_VIEW = { center: [35.23, 31.78] as [number, number], zoom: 14.5 };
@@ -44,7 +45,7 @@ export function NehemiahExplorer() {
   return (
     <main className="explorer">
       <BibleMap items={items} selectedId={selectedItem.id} onSelect={setSelectedId} mapUrl="/api/books/nehemiah/map" ariaLabel="느헤미야 지도" initialView={initialView} legend={legend} />
-      <aside className="context-panel" aria-live="polite">
+      <MobileContextPanel title={selectedItem.title}>
         <div className="mode-tabs" aria-label="느헤미야 탐험 모드">
           {data.modes.map((mode) => <button key={mode.id} type="button" aria-pressed={mode.id === modeId} onClick={() => { setModeId(mode.id); setSelectedId(undefined); }}>{mode.label}</button>)}
         </div>
@@ -61,7 +62,7 @@ export function NehemiahExplorer() {
           <h3>느헤미야 {chapter}장</h3>
           <div className="chapter-text">{data.chapters[String(chapter)].map(({ verse, text }) => <p key={verse}><sup>{verse}</sup>{text}</p>)}</div>
         </section>
-      </aside>
+      </MobileContextPanel>
     </main>
   );
 }

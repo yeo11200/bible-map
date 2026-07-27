@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react';
 
 import type { ActsContextItem, ActsMode } from '../data/acts-context';
 import { BibleMap } from './bible-map';
+import { MobileContextPanel } from './mobile-context-panel';
 
 const ACTS_INITIAL_VIEW = { center: [20, 37] as [number, number], zoom: 4 };
 const legend = [
@@ -27,7 +28,7 @@ export function ActsExplorer() {
 
   return <main className="explorer">
     <BibleMap items={items} selectedId={selectedItem.id} onSelect={setSelectedId} mapUrl="/api/books/acts/map" ariaLabel="사도행전 지도" initialView={ACTS_INITIAL_VIEW} legend={legend} />
-    <aside className="context-panel" aria-live="polite">
+    <MobileContextPanel title={selectedItem.title}>
       <div className="mode-tabs" aria-label="사도행전 탐험 모드">{data.modes.map((mode) => <button key={mode.id} type="button" aria-pressed={mode.id === modeId} onClick={() => { setModeId(mode.id); setSelectedId(undefined); }}>{mode.label}</button>)}</div>
       <p className="layer-label">{data.modes.find((mode) => mode.id === modeId)?.description}</p>
       <h1>{selectedItem.title}</h1>
@@ -42,6 +43,6 @@ export function ActsExplorer() {
         <h3>사도행전 {chapter}장</h3>
         <div className="chapter-text">{data.chapters[String(chapter)].map(({ verse, text }) => <p key={verse}><sup>{verse}</sup>{text}</p>)}</div>
       </section>
-    </aside>
+    </MobileContextPanel>
   </main>;
 }

@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
 import { getMapLayerColor, getMapPlaceLabel } from '../lib/map-style';
 
@@ -22,9 +22,37 @@ type BibleMapProps = {
   legend?: { label: string; color: string }[];
 };
 
+type MapController = {
+  flyTo: (options: { center: [number, number]; zoom: number; duration?: number }) => void;
+  remove: () => void;
+  setPaintProperty: (layer: string, property: string, value: unknown) => void;
+};
+
+const getCircleRadius = (selectedId: string) => ['match', ['get', 'id'], selectedId, 16, 11];
+const getLabelOpacity = (selectedId: string, isCompact: boolean) => isCompact ? ['match', ['get', 'id'], selectedId, 1, 0] : 1;
+
 export function BibleMap({ items, selectedId, onSelect, mapUrl, ariaLabel, initialView = DEFAULT_INITIAL_VIEW, legend }: BibleMapProps) {
   const mapContainerRef = useRef<HTMLDivElement>(null);
+  const mapRef = useRef<MapController | null>(null);
+  const itemsRef = useRef(items);
+  const onSelectRef = useRef(onSelect);
+  const selectedIdRef = useRef(selectedId);
+  const initialViewRef = useRef(initialView);
+  const [isCompact, setIsCompact] = useState(false);
   const key = process.env.NEXT_PUBLIC_MAPTILER_KEY;
+
+  useEffect(() => { itemsRef.current = items; }, [items]);
+  useEffect(() => { onSelectRef.current = onSelect; }, [onSelect]);
+  useEffect(() => { selectedIdRef.current = selectedId; mapRef.current?.setPaintProperty('romans-places', 'circle-radius', getCircleRadius(selectedId)); mapRef.current?.setPaintProperty('romans-place-labels', 'text-opacity', getLabelOpacity(selectedId, isCompact)); }, [isCompact, selectedId]);
+  useEffect(() => { initialViewRef.current = initialView; mapRef.current?.flyTo({ ...initialView, duration: 350 }); }, [initialView]);
+  useEffect(() => {
+    if (!window.matchMedia) return;
+    const mediaQuery = window.matchMedia('(max-width: 760px)');
+    const handleChangeViewport = () => setIsCompact(mediaQuery.matches);
+    handleChangeViewport();
+    mediaQuery.addEventListener('change', handleChangeViewport);
+    return () => mediaQuery.removeEventListener('change', handleChangeViewport);
+  }, []);
 
   useEffect(() => {
     if (!key || !mapContainerRef.current) return;
@@ -35,13 +63,14 @@ export function BibleMap({ items, selectedId, onSelect, mapUrl, ariaLabel, initi
       const map = new maplibregl.Map({
         container: mapContainerRef.current,
         style: `https://api.maptiler.com/maps/streets-v2/style.json?key=${key}`,
-        center: initialView.center,
-        zoom: initialView.zoom,
+        center: initialViewRef.current.center,
+        zoom: initialViewRef.current.zoom,
       });
 
       map.on('load', () => {
+        mapRef.current = map;
         void fetch(mapUrl).then((response) => response.json()).then((mapGeoJson) => {
-          const placeLabels = Object.fromEntries(items.map((item) => [item.id, getMapPlaceLabel(item.title)]));
+          const placeLabels = Object.fromEntries(itemsRef.current.map((item) => [item.id, getMapPlaceLabel(item.title)]));
           const mapDataWithPlaceLabels = {
             ...mapGeoJson,
             features: mapGeoJson.features.map((feature: { geometry: { type: string }; properties?: { id?: string } }) => ({
@@ -67,7 +96,7 @@ export function BibleMap({ items, selectedId, onSelect, mapUrl, ariaLabel, initi
           filter: ['==', '$type', 'Point'],
           paint: {
             'circle-color': ['match', ['get', 'layer'], 'RECIPIENT', getMapLayerColor('RECIPIENT'), 'WRITING_CONTEXT', getMapLayerColor('WRITING_CONTEXT'), 'EVENT', getMapLayerColor('EVENT'), 'JOURNEY', getMapLayerColor('JOURNEY'), 'UNCERTAIN', getMapLayerColor('UNCERTAIN'), 'CHURCH', getMapLayerColor('CHURCH'), 'MISSION', getMapLayerColor('MISSION'), 'ROME', getMapLayerColor('ROME'), 'CROSSING', getMapLayerColor('CROSSING'), 'CONQUEST', getMapLayerColor('CONQUEST'), 'INHERITANCE', getMapLayerColor('INHERITANCE'), '#765e9c'],
-            'circle-radius': ['match', ['get', 'id'], selectedId, 16, 11],
+            'circle-radius': getCircleRadius(selectedIdRef.current) as never,
             'circle-stroke-width': 3,
             'circle-stroke-color': '#fffdf8',
           },
@@ -86,21 +115,21 @@ export function BibleMap({ items, selectedId, onSelect, mapUrl, ariaLabel, initi
             'text-allow-overlap': true,
             'text-ignore-placement': true,
           },
-          paint: { 'text-color': '#302a22', 'text-halo-color': '#fffdf8', 'text-halo-width': 2 },
+          paint: { 'text-color': '#302a22', 'text-halo-color': '#fffdf8', 'text-halo-width': 2, 'text-opacity': getLabelOpacity(selectedIdRef.current, isCompact) as never },
         });
           map.on('click', 'romans-places', (event) => {
           const id = event.features?.[0]?.properties?.id;
-          if (typeof id === 'string') onSelect(id);
+          if (typeof id === 'string') onSelectRef.current(id);
         });
           map.on('mouseenter', 'romans-places', () => { map.getCanvas().style.cursor = 'pointer'; });
           map.on('mouseleave', 'romans-places', () => { map.getCanvas().style.cursor = ''; });
         });
       });
-      removeMap = () => map.remove();
+      removeMap = () => { mapRef.current = null; map.remove(); };
     });
 
     return () => removeMap?.();
-  }, [ariaLabel, initialView, key, mapUrl, onSelect, selectedId]);
+  }, [key, mapUrl]);
 
   return (
     <section className="map-stage" aria-label={ariaLabel}>

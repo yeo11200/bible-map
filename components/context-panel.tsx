@@ -3,6 +3,7 @@
 import { useEffect, useRef } from 'react';
 import type { ContextItem } from '../data/romans-context';
 import { RomansReader } from './romans-reader';
+import { MobileContextPanel } from './mobile-context-panel';
 
 const layerLabels: Record<ContextItem['layer'], string> = {
   RECIPIENT: '편지의 수신지',
@@ -16,14 +17,14 @@ type ContextPanelProps = {
 };
 
 export function ContextPanel({ item, chapters }: ContextPanelProps) {
-  const panelRef = useRef<HTMLElement>(null);
+  const panelRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     if (panelRef.current) panelRef.current.scrollTop = 0;
   }, [item.id]);
 
   return (
-    <aside ref={panelRef} aria-live="polite" className="context-panel">
+    <MobileContextPanel title={item.title} contentRef={panelRef}>
       <p className="layer-label">{layerLabels[item.layer]}</p>
       <h1>{item.title}</h1>
       <p>{item.summary}</p>
@@ -45,7 +46,7 @@ export function ContextPanel({ item, chapters }: ContextPanelProps) {
           );
         })}
       </div>
-      <RomansReader chapters={chapters} />
-    </aside>
+        <RomansReader chapters={chapters} />
+    </MobileContextPanel>
   );
 }
