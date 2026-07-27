@@ -19,11 +19,20 @@ export const metadata: Metadata = {
     siteName: '성경 지도 탐험',
     title: '성경 지도 탐험 | 장소와 이야기로 읽는 성경',
     description: '성경 속 장소, 사건, 인물의 연결을 지도와 관련 구절로 탐색합니다.',
+    images: [
+      {
+        url: '/og-bible-map.png',
+        width: 1200,
+        height: 630,
+        alt: '성경 지도 탐험 - 장소와 이야기로 읽는 성경',
+      },
+    ],
   },
   twitter: {
-    card: 'summary',
+    card: 'summary_large_image',
     title: '성경 지도 탐험',
     description: '장소와 이야기로 읽는 성경',
+    images: ['/og-bible-map.png'],
   },
   robots: { index: true, follow: true },
 };
