@@ -95,7 +95,7 @@ export function BibleMap({ items, selectedId, onSelect, mapUrl, ariaLabel, initi
           source: 'romans-context',
           filter: ['==', '$type', 'Point'],
           paint: {
-            'circle-color': ['match', ['get', 'layer'], 'RECIPIENT', getMapLayerColor('RECIPIENT'), 'WRITING_CONTEXT', getMapLayerColor('WRITING_CONTEXT'), 'EVENT', getMapLayerColor('EVENT'), 'JOURNEY', getMapLayerColor('JOURNEY'), 'UNCERTAIN', getMapLayerColor('UNCERTAIN'), 'CHURCH', getMapLayerColor('CHURCH'), 'MISSION', getMapLayerColor('MISSION'), 'ROME', getMapLayerColor('ROME'), 'CROSSING', getMapLayerColor('CROSSING'), 'CONQUEST', getMapLayerColor('CONQUEST'), 'INHERITANCE', getMapLayerColor('INHERITANCE'), '#765e9c'],
+            'circle-color': ['match', ['get', 'layer'], 'RECIPIENT', getMapLayerColor('RECIPIENT'), 'WRITING_CONTEXT', getMapLayerColor('WRITING_CONTEXT'), 'EVENT', getMapLayerColor('EVENT'), 'JOURNEY', getMapLayerColor('JOURNEY'), 'UNCERTAIN', getMapLayerColor('UNCERTAIN'), 'CHURCH', getMapLayerColor('CHURCH'), 'MISSION', getMapLayerColor('MISSION'), 'ROME', getMapLayerColor('ROME'), 'CROSSING', getMapLayerColor('CROSSING'), 'CONQUEST', getMapLayerColor('CONQUEST'), 'INHERITANCE', getMapLayerColor('INHERITANCE'), 'MATTHEW', getMapLayerColor('MATTHEW'), 'MARK', getMapLayerColor('MARK'), 'LUKE', getMapLayerColor('LUKE'), 'JOHN', getMapLayerColor('JOHN'), '#765e9c'],
             'circle-radius': getCircleRadius(selectedIdRef.current) as never,
             'circle-stroke-width': 3,
             'circle-stroke-color': '#fffdf8',

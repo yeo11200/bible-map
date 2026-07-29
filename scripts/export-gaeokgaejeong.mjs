@@ -17,6 +17,10 @@ const books = [
   { key: '느', book: '느헤미야', source: '구약/1-16느헤미야.hwp', output: 'data/gaeokgaejeong-nehemiah.json', chapters: 13 },
   { key: '롬', book: '로마서', source: '신약/2-06로마서.hwp', output: 'data/korrv-romans.json', chapters: 16 },
   { key: '행', book: '사도행전', source: '신약/2-05사도행전.hwp', output: 'data/gaeokgaejeong-acts.json', chapters: 28 },
+  { key: '마', book: '마태복음', source: '신약/2-01마태복음.hwp', output: 'data/gaeokgaejeong-matthew.json', chapters: 28 },
+  { key: '막', book: '마가복음', source: '신약/2-02마가복음.hwp', output: 'data/gaeokgaejeong-mark.json', chapters: 16 },
+  { key: '눅', book: '누가복음', source: '신약/2-03누가복음.hwp', output: 'data/gaeokgaejeong-luke.json', chapters: 24 },
+  { key: '요', book: '요한복음', source: '신약/2-04요한복음.hwp', output: 'data/gaeokgaejeong-john.json', chapters: 21 },
 ];
 
 for (const { key, book, source, output, chapters: chapterCount } of books) {

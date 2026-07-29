@@ -10,6 +10,10 @@ const mapLayerColors: Record<string, string> = {
   CROSSING: '#3e6d83',
   CONQUEST: '#984f2a',
   INHERITANCE: '#765e9c',
+  MATTHEW: '#984f2a',
+  MARK: '#3e6d83',
+  LUKE: '#765e9c',
+  JOHN: '#3f7a50',
 };
 
 export function getMapLayerColor(layer: string) {

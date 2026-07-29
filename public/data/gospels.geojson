@@ -1,0 +1,16 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    { "type": "Feature", "properties": { "id": "jordan-baptism", "layer": "MATTHEW" }, "geometry": { "type": "Point", "coordinates": [35.56, 31.84] } },
+    { "type": "Feature", "properties": { "id": "cana-sign", "layer": "JOHN" }, "geometry": { "type": "Point", "coordinates": [35.34, 32.75] } },
+    { "type": "Feature", "properties": { "id": "nazareth-beginning", "layer": "LUKE" }, "geometry": { "type": "Point", "coordinates": [35.30, 32.70] } },
+    { "type": "Feature", "properties": { "id": "capernaum-ministry", "layer": "MARK" }, "geometry": { "type": "Point", "coordinates": [35.57, 32.88] } },
+    { "type": "Feature", "properties": { "id": "galilee-ministry", "layer": "MATTHEW" }, "geometry": { "type": "Point", "coordinates": [35.56, 32.82] } },
+    { "type": "Feature", "properties": { "id": "caesarea-confession", "layer": "MATTHEW" }, "geometry": { "type": "Point", "coordinates": [35.15, 33.24] } },
+    { "type": "Feature", "properties": { "id": "jericho-healing", "layer": "LUKE" }, "geometry": { "type": "Point", "coordinates": [35.45, 31.87] } },
+    { "type": "Feature", "properties": { "id": "bethany-anointing", "layer": "JOHN" }, "geometry": { "type": "Point", "coordinates": [35.26, 31.77] } },
+    { "type": "Feature", "properties": { "id": "jerusalem-passion", "layer": "MATTHEW" }, "geometry": { "type": "Point", "coordinates": [35.22, 31.78] } },
+    { "type": "Feature", "properties": { "id": "galilee-restoration", "layer": "JOHN" }, "geometry": { "type": "Point", "coordinates": [35.55, 32.89] } },
+    { "type": "Feature", "properties": { "id": "gospels-route", "layer": "MATTHEW" }, "geometry": { "type": "LineString", "coordinates": [[35.56, 31.84], [35.34, 32.75], [35.30, 32.70], [35.57, 32.88], [35.15, 33.24], [35.45, 31.87], [35.26, 31.77], [35.22, 31.78], [35.55, 32.89]] } }
+  ]
+}
